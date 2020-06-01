@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://vivek:Ya435SVLHloHq5Yz@cluster0-perqq.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "mysupersecrettoken"
+  "jwtSecret": "mysupersecrettoken",
+  "clientId": "51874f33fd0941d983f8",
+  "clientSecret": "e383f11d843f2bfe35103cc07886f622c02759ef"
 }
