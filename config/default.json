@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://vivek:Ya435SVLHloHq5Yz@cluster0-perqq.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysupersecrettoken"
+}
