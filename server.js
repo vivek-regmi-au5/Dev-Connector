@@ -3,12 +3,14 @@ const app = express();
 const mongoose = require("mongoose");
 const config = require("config");
 const dbURI = config.get("mongoURI");
+const cors = require("cors");
 
 app.use(
   express.json({
     extended: false,
   })
 );
+app.use(cors());
 
 mongoose.connect(
   dbURI,
