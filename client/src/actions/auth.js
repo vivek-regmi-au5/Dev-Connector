@@ -6,6 +6,7 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT,
+  CLEAR_PROFILE,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -89,6 +90,7 @@ export const login = (email, password) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      dispatch(loadUser());
     } catch (error) {
       console.log("register error email alreadyb exists: ", error);
 
@@ -107,6 +109,9 @@ export const logout = () => {
   return (dispatch) => {
     dispatch({
       type: LOGOUT,
+    });
+    dispatch({
+      type: CLEAR_PROFILE,
     });
   };
 };

@@ -7,6 +7,7 @@ const config = require("config");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 const { route } = require("./user");
 
 // @route  GET api/profile/me
@@ -20,6 +21,7 @@ router.get("/me", auth, async (req, res) => {
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
+    res.json(profile);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -143,6 +145,7 @@ router.get("/user/:userId", async (req, res) => {
 // @access Private
 router.delete("/", auth, async (req, res) => {
   try {
+    await Post.deleteMany({ user: req.user.id });
     await Profile.findOneAndRemove({ user: req.user.id });
     // await Profile.findOneAndRemove({ user: req.user.id });
     await User.findOneAndRemove({ user: req.user.id });
