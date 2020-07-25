@@ -2,10 +2,13 @@ import axios from "axios";
 import { setAlert } from "./alert";
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   UPDATE_PROFILE,
   ACCOUNT_DELETED,
+  CLEAR_PROFILES,
   CLEAR_PROFILE,
+  GET_REPOS,
 } from "./types";
 
 // Get current user profile
@@ -16,6 +19,73 @@ export const getCurrentProfile = () => {
       console.log("res at profileme: ", res);
       dispatch({
         type: GET_PROFILE,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+};
+
+// Get all profiles
+export const getProfiles = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: CLEAR_PROFILES,
+    });
+    try {
+      const res = await axios.get("http://localhost:7777/api/profile");
+      console.log("res at profileme: ", res);
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+};
+
+// Get profile by id
+export const getProfileById = (userId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:7777/api/profile/user/${userId}`
+      );
+      console.log("res at profileme: ", res);
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+};
+
+// Get github repos
+export const getGithubRepos = (username) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CLEAR_PROFILES,
+    });
+    try {
+      const res = await axios.get(
+        `http://localhost:7777/api/profile/github/${username}`
+      );
+      console.log("response github ", res);
+      dispatch({
+        type: GET_REPOS,
         payload: res.data,
       });
     } catch (err) {

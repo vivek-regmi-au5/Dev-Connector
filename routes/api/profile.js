@@ -98,7 +98,7 @@ router.post(
       res.json(profile);
     } catch (err) {
       console.log(err);
-      return res.send("Server Errordfgdfg");
+      return res.send("Server Error");
     }
   }
 );

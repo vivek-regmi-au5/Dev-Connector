@@ -16,6 +16,9 @@ import setAuthToken from "./utils/setAuthToken";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
+import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -36,6 +39,9 @@ const App = () => {
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/profile/" component={Login} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profile/:id" component={Profile} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute
               exact
@@ -54,6 +60,7 @@ const App = () => {
               component={AddEducation}
             />
             <PrivateRoute exact path="/post" component={Posts} />
+            <PrivateRoute exact path="/post/:id" component={Post} />
           </Switch>
         </section>
       </Fragment>
