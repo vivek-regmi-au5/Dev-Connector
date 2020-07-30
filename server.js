@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("config");
+const path = require("path");
 const dbURI = config.get("mongoURI");
 const cors = require("cors");
 
