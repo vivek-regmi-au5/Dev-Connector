@@ -24,10 +24,6 @@ mongoose.connect(
   }
 );
 
-app.get("/", (req, res) => {
-  res.send("Test route");
-});
-
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/auth", require("./routes/api/auth"));
